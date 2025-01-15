@@ -453,7 +453,7 @@ function App() {
   const userName = 'Shahib Amin';
 
   return (
-    <div classNameName="App">
+    <div className="App">
       <Greeting name={userName} />
     </div>
   );
@@ -469,7 +469,7 @@ import React from 'react';
 
 function Greeting({ name }) {
   return (
-    <div classNameName="text-xl font-bold text-center text-blue-600">
+    <div className="text-xl font-bold text-center text-blue-600">
       Hello, {name}!
     </div>
   );
