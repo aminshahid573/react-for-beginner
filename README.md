@@ -450,7 +450,7 @@ import React from 'react';
 import Greeting from './Greeting';
 
 function App() {
-  const userName = 'Shahib Amin';
+  const userName = 'Shahid Amin';
 
   return (
     <div className="App">
