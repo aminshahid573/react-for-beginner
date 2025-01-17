@@ -482,5 +482,182 @@ export default Greeting;
 
 - The Tailwind utility classNamees such as `text-xl`, `font-bold`, `text-center`, and `text-blue-600` are used to style the components.
 
+# React Router DOM (My Way)
+
+This guide demonstrates how to set up routing in a React project using `react-router-dom` with a custom and flexible approach.
+
+## Prerequisites
+
+Ensure `react-router-dom` is installed in your project:
+
+```bash
+npm install react-router-dom
+```
+
+## Setup Routing (My Way)
+
+```jsx
+// index.js
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Layout from "./Layout";
+import { Home, About, Contact } from "./components";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="contact" element={<Contact />} />
+    </Route>
+  )
+);
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>
+);
+```
+
+### Key Points
+- **`createBrowserRouter`**: Initializes the router.
+- **`createRoutesFromElements`**: Uses JSX for route definitions.
+- **`Route`**: Defines individual routes. Use `index` for the default child route.
+- **`RouterProvider`**: Makes the router available to the app.
+
+### Folder Structure
+
+```
+/src
+  /components
+    Home.js
+    About.js
+    Contact.js
+  Layout.js
+  index.js
+```
+
+### Example Layout Component
+
+```jsx
+// Layout.js
+import { Outlet, NavLink } from "react-router-dom";
+
+function Layout() {
+  return (
+    <div>
+      <nav>
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+---
+
+# Context API (Using Theme Changer as Example)
+
+This guide demonstrates how to use the Context API to implement a theme changer in a React project.
+
+## Key Concepts
+
+- **Context**: Provides a way to share values (like themes) across components without prop drilling.
+- **Provider**: Supplies the context value to the component tree.
+- **Consumer** or `useContext`: Accesses the context value within components.
+
+## Theme Changer Example
+
+### 1. Create the Theme Context
+
+```jsx
+// ThemeContext.js
+import { createContext, useState } from "react";
+
+export const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+```
+
+### 2. Use the Provider in Your App
+
+```jsx
+// index.js
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import { ThemeProvider } from "./ThemeContext";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </StrictMode>
+);
+```
+
+### 3. Create a Component to Access the Theme
+
+```jsx
+// ThemeToggler.js
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+
+function ThemeToggler() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <div style={{ background: theme === "light" ? "#fff" : "#333", color: theme === "light" ? "#000" : "#fff", padding: "1rem" }}>
+      <p>Current Theme: {theme}</p>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div>
+  );
+}
+
+export default ThemeToggler;
+```
+
+### 4. Use the ThemeToggler in Your App
+
+```jsx
+// App.js
+import ThemeToggler from "./ThemeToggler";
+
+function App() {
+  return (
+    <div>
+      <h1>Theme Changer</h1>
+      <ThemeToggler />
+    </div>
+  );
+}
+
+export default App;
+```
 
 
