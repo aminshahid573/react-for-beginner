@@ -35,6 +35,10 @@ This guide covers creating, understanding, and managing a React application, inc
     - [Reconciliation](#reconciliation)
         - [Steps](#steps)
         - [Optimization Techniques](#optimization-techniques)
+    - [React Props & Tailwind CSS Integration](#2-Install-Dependencies)
+    - [React Router DOM (My Way)](#optimization-techniques)
+    - [Context API (Using Theme Changer as Example)](#optimization-techniques)
+    - [React Context API Blueprint](#optimization-techniques)
 ---
 
 ## 1. Creating a React App
@@ -404,8 +408,8 @@ This is a simple React project demonstrating the use of props in components alon
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/your-username/react-for-beginner.git
+cd react-for-beginner
 ```
 
 ### 2. Install Dependencies
