@@ -2,6 +2,7 @@
 
 This guide covers creating, understanding, and managing a React application, including recommended practices and tips for an optimized workflow.
 
+# We Follow Industry Standard in this tutorial
 ---
 
 ## Table of Contents
