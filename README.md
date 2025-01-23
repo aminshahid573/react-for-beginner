@@ -837,6 +837,3 @@ To reuse this blueprint for different contexts:
 ---
 
 Happy coding! 🚀
-
-
-
