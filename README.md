@@ -37,8 +37,8 @@ This guide covers creating, understanding, and managing a React application, inc
         - [Steps](#steps)
         - [Optimization Techniques](#optimization-techniques)
     - [React Props & Tailwind CSS Integration](#2-install-dependencies)
-    - [React Router DOM (My Way)](#optimization-techniques)
-    - [Context API (Using Theme Changer as Example)](#optimization-techniques)
+    - [React Router DOM (My Way)](#react-router-dom-my-way)
+    - [Context API (Using Theme Changer as Example)](#context-api-using-theme-changer-as-example)
     - [React Context API Blueprint](#react-context-api-blueprint)
 ---
 
