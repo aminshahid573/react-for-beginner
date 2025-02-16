@@ -1,16 +1,19 @@
 /* eslint-disable no-useless-catch */
 import { Client, Account, ID } from "appwrite";
 import conf from "../conf/conf";
+import databaseService from "./databaseService";
 
 export class AuthService {
   client = new Client();
   account;
+  // users;
 
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
     this.account = new Account(this.client);
+    // this.users = new Users(this.client);
   }
 
   //create account method using email,password,name and photoUrl
@@ -24,6 +27,7 @@ export class AuthService {
       );
       if (userAccount) {
         //call another method
+        
         return this.login({ email, password });
       } else {
         return userAccount;
@@ -54,6 +58,19 @@ export class AuthService {
     }
   }
 
+  async updatePassword({ currentPassword, newPassword }) {
+    try {
+      const result = await this.account.updatePassword(
+        newPassword,
+        currentPassword
+    );
+    return result
+    } catch (error) {
+      console.log("APPWRITE :: SERVICE :: updatePassword :: ERROR", error);
+      return false;
+    }
+  }
+
   async getCurrentUser() {
     try {
       return await this.account.get();
@@ -63,6 +80,8 @@ export class AuthService {
     }
     
   }
+
+ 
 }
 
 const authService = new AuthService();

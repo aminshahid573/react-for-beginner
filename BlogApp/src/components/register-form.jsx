@@ -18,6 +18,7 @@ import { getCurrentUser, registerUser } from "../redux/authSlice";
 import storageService from "../appwrite/storageService";
 import { useEffect,useState } from "react";
 import authService from "../appwrite/authService";
+import databaseService from "../appwrite/databaseService";
 
 export function RegisterForm({ className, ...props }) {
   const {
@@ -47,6 +48,13 @@ export function RegisterForm({ className, ...props }) {
     
     dispatch(registerUser({ email, password, name}))
     .then(async (res) => {
+      databaseService.addUserDetails({userId: res.payload.$id,name: res.payload.name,email: res.payload.email,photoId: ""})
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log("add user error", err)
+      })
       if (res.payload && res.type === "auth/register/fulfilled") {
         try {
           let photoId = '';
@@ -59,6 +67,8 @@ export function RegisterForm({ className, ...props }) {
           
           if(photoId) {
             await authService.account.updatePrefs({ photoId });
+            databaseService.updateUserDetails({userId: res.payload.$id,name: res.payload.name,photoId: photoId})
+            console.log("response log test", res)
           }
 
           toast({

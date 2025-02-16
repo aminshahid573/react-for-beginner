@@ -16,7 +16,7 @@ function Header() {
  const [navLinks, setNavLinks] = useState([
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Blog", path: "/blog" },
+  { name: "My Blogs", path: "/myblogs" },
 ]);
 
 useEffect(() => {
@@ -42,8 +42,7 @@ useEffect(() => {
     return <h1>Loading...</h1>
   }
 
-  storageService.getFilePreview(user?.prefs?.photoId).then((url)=>setImage(url.href))
-    .then((data) => console.log(data.href))
+
   return (
     <div className="px-16 pt-3 flex justify-between">
       <div className="left text-2xl">

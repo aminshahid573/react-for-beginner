@@ -34,9 +34,7 @@ function Dashboard() {
     checkSession();
   }, [dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logoutUser()).then(() => navigate("/login"));
-  };
+ 
 
   //conditional rendering
   if (isLoading) {

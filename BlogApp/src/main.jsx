@@ -9,6 +9,9 @@ import {store} from './redux/store.js'
 import Dashboard from './pages/Dashboard.jsx'
 import { Toaster } from "@/components/ui/toaster"
 import Profile from './pages/Profile.jsx'
+import MyBlogs from './pages/MyBlogs.jsx'
+import BlogUpload from './pages/BlogUpload.jsx'
+import Post from './pages/Post.jsx'
  
 
 
@@ -19,6 +22,9 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/myblogs' element={<MyBlogs />} />
+      <Route path='/createblog' element={<BlogUpload />} />
+      <Route path='/post/:slug' element={<Post />} />
     </Route>
   )
 )
